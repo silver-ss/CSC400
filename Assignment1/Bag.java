@@ -18,8 +18,8 @@ public class Bag<T> {
         return element;
     }
     private boolean isPositive(int n) {
-        if (n < 0) {
-            System.out.println("Negative values not allowed");
+        if (n <= 0) {
+            System.out.println("Please provide a positive integer to add multiple items");
             return false;
         }
         return true;
@@ -82,5 +82,19 @@ public class Bag<T> {
             System.out.printf("Item %d: %-3d %s%n", n, getCount(element), element.toString());
             ++n;
         }
+    }
+    public int size() {
+        return bag.size();
+    }
+    public void merge(Bag<T> otherBag) {
+        // add the underlying elements from otherbag to bag
+        bag.addAll(otherBag.bag);
+    }
+    public Bag<T> distinct() {
+        Bag<T> distinctBag = new Bag<T>();
+        for (T element : getDistinct()) {
+            distinctBag.add(element);
+        }
+        return distinctBag;
     }
 }

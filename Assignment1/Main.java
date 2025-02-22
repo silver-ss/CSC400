@@ -1,41 +1,41 @@
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
-        //1. Create an instance of the bag class
-        Bag<String> bag = new Bag<String>();
-        //2. Add several elements to the bag including duplicates
-          // using multi add
-        bag.add("Apple", 10);
-        bag.add("Orange", 12);
-          //adding elements individually
-        bag.add("Apple");
-          //add duplicate elements individually
-        bag.add("Grapes");
-        bag.add("Grapes");
-        //3. print the bag contents
-        bag.printbag();
-        //4. Test the contains elements
-          //testing not case specific
-        System.out.println("Orange is in the bag: " + bag.contains("orange"));
-        System.out.println("Apple is in the bag: " + bag.contains("Apple"));
-          //test item that is not in bag
-        System.out.println("Bitcoin is in the bag: " + bag.contains("Bitcoin"));
-        //5. test the count method for a few elements
-        System.out.println("Apples in bag after adding eleven: " +
-                bag.getCount("Apple"));
-        System.out.println("Grapes in bag after adding two: " +
-                bag.getCount("Grapes"));
-        //6. remove an element
-        bag.remove("Grapes");
-        //7. Print the bag contents again to confirm there is now one Grapes in the bag
-        bag.printbag();
-        //8. Test contains method to ensure grapes still in list after removing 1 of the 2
-        System.out.println("Grapes is still in the list after removing one of the two: "
-            + bag.contains("grapes"));
-          // Remove the final Grape element and check again should be false now.
-        bag.remove("Grapes");
-        System.out.println("Grapes is in the list after removing the last one: "
-                + bag.contains("grapes"));
-        //9. Test the count method for an item not in the list
-        System.out.print("Grapes in the list now: " + bag.getCount("Grapes"));
+        // 1. Create two instances of the Bag class
+        Bag<String> bag1 = new Bag<>();
+        Bag<String> bag2 = new Bag<>();
+        // 2. Add Elements to each bag, including duplicates
+          //bag1
+        bag1.add("Strawberries", 9);
+        bag1.add("blueberries", 5);
+        bag1.add("Watermellon");
+          //bag2
+        bag2.add("Strawberries", 11);
+        bag2.add("chocolate", 5);
+        bag2.add("Apple");
+        // 3. Print the size of each bag using the size method
+        System.out.printf("Bag 1 contains %d elements %nBag 2 Contains %d elements%n", bag1.size(), bag2.size());
+        //4. Merge the two bags together using the merge method
+        bag1.merge(bag2);
+        //5. print the merged bag contents
+        System.out.print("Afer merging the two bags, ");
+        bag1.printbag();
+        //6. Create  a new bag containing only distinct elements using the distinct method
+        Bag<String> distinctBag = bag1.distinct();
+        //7. Print the distinct bag contents
+        System.out.print("Afer Create a bag with distinct values from the merged bag, ");
+        distinctBag.printbag();
+        // additional test cases
+          //attempt to add negative values
+        System.out.println("Testing adding negative values to the bag:");
+        bag1.add("strawberry", -2);
+          //attempt to add 0 of an item
+        System.out.println("Testing adding 0 quantity to the bag:");
+        bag1.add("Strawberry", 0);
+          //Use Uppercase
+        System.out.println("Testing count method with upper case:");
+        System.out.println(bag1.getCount("STRAWBERRIES"));
+
     }
 }
