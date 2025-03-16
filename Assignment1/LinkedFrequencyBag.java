@@ -2,10 +2,10 @@ import java.util.LinkedList;
 import java.util.Set;
 import java.util.LinkedHashSet;
 
-public class Bag<T> {
+public class LinkedFrequencyBag<T> {
     private LinkedList<T> bag;
 
-    public Bag() {
+    public LinkedFrequencyBag() {
         bag = new LinkedList<T>();
     }
     //if the item is a string lower case it
@@ -86,12 +86,12 @@ public class Bag<T> {
     public int size() {
         return bag.size();
     }
-    public void merge(Bag<T> otherBag) {
+    public void merge(LinkedFrequencyBag<T> otherLinkedFrequencyBag) {
         // add the underlying elements from otherbag to bag
-        bag.addAll(otherBag.bag);
+        bag.addAll(otherLinkedFrequencyBag.bag);
     }
-    public Bag<T> distinct() {
-        Bag<T> distinctBag = new Bag<T>();
+    public LinkedFrequencyBag<T> distinct() {
+        LinkedFrequencyBag<T> distinctBag = new LinkedFrequencyBag<T>();
         for (T element : getDistinct()) {
             distinctBag.add(element);
         }
