@@ -21,18 +21,19 @@ public class PostfixCalc {
                 equation[i] = String.valueOf(input.charAt(i));
             }
         }
-        double top, next;
+        double right, left;
         for (String oper : equation) {
             if (isOperator(oper)) {
                     if (operands.size() < 2) {
                         throw new IllegalArgumentException("Too Many Operators");
                     }
-                    //grab the top two char from the stack
-                    //convert to int and use the Simplify method
-                    top = operands.pop();
-                    next = operands.pop();
+                    //grab the right two char from the stack
+                    //convert to double and use the Simplify method
+                    right = operands.pop();
+                    left = operands.pop();
                     //convert to solution to char and push to top of stack
-                    operands.push(simplify(top, next, oper));
+                    //updated order to left, right for readability
+                    operands.push(simplify(left, right, oper));
             }
             else {
                 try {
@@ -55,13 +56,15 @@ public class PostfixCalc {
             return false;
     }
     //evaluate expression based on operator type and return solution
-    private double simplify(double top, double next, String operand) {
+    //updated ordering of variables to left then right
+    //renamed variables to left and right for better readability
+    private double simplify(double left, double right, String operand) {
         switch (operand) {
-            case "+" -> { return (next + top); }
-            case "-" -> { return (next - top); }
-            case "*" -> { return (next * top); }
-            case "/" -> { return (next / top); }
-            case "%" -> { return (next % top); }
+            case "+" -> { return (left + right); }
+            case "-" -> { return (left - right); }
+            case "*" -> { return (left * right); }
+            case "/" -> { return (left / right); }
+            case "%" -> { return (left % right); }
             //if other operator throw error
             default ->
                 throw new IllegalArgumentException("Unknown operator:" + operand);
